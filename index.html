@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS File -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Tailwind CSS File -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- Main Template CSS File -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="w-75 mx-auto py-5">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control border-0 border-bottom" id="productName" placeholder="Product Name">
+        <label for="productName">Product Name: </label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control border-0 border-bottom" id="productPrice" placeholder="Product Price">
+        <label for="productPrice">Product Price: </label>
+      </div>
+      <div class="form-floating mb-3">
+        <input list="categories" type="text" class="form-control border-0 border-bottom" id="productCategory" placeholder="Product Price">
+        <label for="productCategory">Product Category: </label>
+        <datalist id="categories">
+          <option value="TV">
+          <option value="Mobile">
+          <option value="Laptop">
+          <option value="Screens">
+          <option value="Electronics">
+        </datalist>
+      </div>
+      <div class="form-floating mb-3">
+        <textarea type="text" class="form-control border-0 border-bottom" id="productDesc" placeholder="Product Description"></textarea>
+        <label for="productDesc">Product Description: </label>
+      </div>
+      <div class="form-floating mb-3">
+        <input accept="image/*" type="file" class="form-control border-0 border-bottom" id="productImage" placeholder="Product Image">
+        <label for="productImage">Product Image: </label>
+      </div>
+      <button id="addBtn" onclick="addProduct()" class="btn btn-info text-white rounded-1">Add Product</button>
+      <button id="updateBtn" onclick="updateProduct()" class="btn d-none btn-warning text-dark rounded-1">Update Product</button>
+    </div>
+    <div class="container">
+      <input id="searchInput" oninput="searchProducts()" placeholder="Search by name..." type="text" class="form-control my-2" name="" id="">
+      <div id="rowData" class="row py-5">
+
+      </div>
+    </div>
+
+    <script src="js/all.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
