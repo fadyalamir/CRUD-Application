@@ -11,7 +11,7 @@ let productsContainer = [];
 let updatedIndex;
 
 // leh data (zbon adim)
-if(localStorage.getItem("products") !== null) {
+if (localStorage.getItem("products") !== null) {
   productsContainer = JSON.parse(localStorage.getItem("products"));
   displayProducts(productsContainer);
 }
@@ -23,7 +23,7 @@ function addProduct() {
     category: productCategoryInput.value,
     desc: productDescInput.value,
     image: `images/${productImageInput.files[0]?.name}`,
-  }
+  };
   productsContainer.push(product);
   displayProducts(productsContainer);
   localStorage.setItem("products", JSON.stringify(productsContainer));
@@ -42,7 +42,7 @@ function displayProducts(arr) {
   // arr = productsContainer
   // arr = termProducts
   let cartona = ``;
-  for(let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     cartona += `<div class="col-md-2 col-sm-6">
           <div class="product">
             <img src="${arr[i].image}" class="w-100" alt="Product Image">
@@ -60,16 +60,16 @@ function displayProducts(arr) {
 
 function deleteProduct(deletedIndex) {
   productsContainer.splice(deletedIndex, 1);
-  displayProducts();
+  displayProducts(productsContainer);
   localStorage.setItem("products", JSON.stringify(productsContainer));
 }
 
-function searchProducts(term) {
+function searchProducts() {
   var term = searchInput.value;
   // let cartona = ``;
   let termProducts = [];
-  for(let i = 0; i < productsContainer.length; i++) {
-    if(productsContainer[i].code.toLowerCase().includes(term.toLowerCase()) == true) {
+  for (let i = 0; i < productsContainer.length; i++) {
+    if (productsContainer[i].code.toLowerCase().includes(term.toLowerCase()) == true) {
       termProducts.push(productsContainer[i]);
     }
   }
@@ -85,7 +85,7 @@ function setFormForUpdate(i) {
   productPriceInput.value = productsContainer[updatedIndex].price;
   productCategoryInput.value = productsContainer[updatedIndex].category;
   productDescInput.value = productsContainer[updatedIndex].desc;
-  productImageInput.value = productsContainer[updatedIndex].image;
+  productImageInput.value = null;
 }
 
 function updateProduct() {
@@ -95,28 +95,10 @@ function updateProduct() {
   productsContainer[updatedIndex].price = productPriceInput.value;
   productsContainer[updatedIndex].desc = productDescInput.value;
   productsContainer[updatedIndex].category = productCategoryInput.value;
-  displayProducts();
+  if (productImageInput.files[0]) {
+    productsContainer[updatedIndex].image = `images/${productImageInput.files[0].name}`;
+  }
+  displayProducts(productsContainer);
   localStorage.setItem("products", JSON.stringify(productsContainer));
   clearForm();
 }
-
-// // oninput="validateProductName()"
-// function validateProductName() {
-//   let regex = /^[A-Z][a-z]{2,8}$/;
-//   let myStr = productNameInput.value;
-
-//   if(regex.test(myStr) == true) {
-//     console.log("match");
-//   } else {
-//     console.log("not match");
-//   }
-// }
-
-// let products = [
-//   {code: 'Samsumg S25', price: '75000', category: 'Mobile', desc: 'good'},
-//   {code: 'Samsumg S25', price: '75000', category: 'Mobile', desc: 'good'},
-//   {code: 'Samsumg S25', price: '75000', category: 'Mobile', desc: 'good'},
-//   {code: 'Samsumg S25', price: '75000', category: 'Mobile', desc: 'good'},
-//   {code: 'Samsumg S25', price: '75000', category: 'Mobile', desc: 'good'},
-//   {code: 'Samsumg S25', price: '75000', category: 'Mobile', desc: 'good'},
-// ]
